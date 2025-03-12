@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="benchmarks">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/lib/benchmarks.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/lib/modernjavainaction-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,52 @@
+private static void removingFromMaps() {
+    // 바꿀 수 있는 맵 필요!
+    Map<String, String> favouriteMovies = new HashMap<>();
+    favouriteMovies.put("Raphael", "Jack Reacher 2");
+    favouriteMovies.put("Cristina", "Matrix");
+    favouriteMovies.put("Olivia", "James Bond");
+    String key = "Raphael";
+    String value = "Jack Reacher 2";
+
+    System.out.println("--> Removing an unwanted entry the cumbersome way");
+    boolean result = remove(favouriteMovies, key, value);
+    System.out.printf("%s [%b]%n", favouriteMovies, result);
+
+    // 두 번째 테스트를 하기 전에 삭제된 항목을 다시 돌려놓음
+    favouriteMovies.put("Raphael", "Jack Reacher 2");
+
+    System.out.println("--> Removing an unwanted the easy way");
+    favouriteMovies.remove(key, value);
+    System.out.printf("%s [%b]%n", favouriteMovies, result);
+}
+
+private static void replacingInMaps() {
+    Map<String, String> favouriteMovies = new HashMap<>();
+    favouriteMovies.put("Raphael", "Star Wars");
+    favouriteMovies.put("Olivia", "james bond");
+
+    System.out.println("--> Replacing values in a map with replaceAll()");
+    favouriteMovies.replaceAll((friend, movie) -> movie.toUpperCase());
+    System.out.println(favouriteMovies);
+}
+
+private static void mergingMaps() {
+    Map<String, String> family = Map.ofEntries(
+            entry("Teo", "Star Wars"),
+            entry("Cristina", "James Bond"));
+    Map<String, String> friends = Map.ofEntries(entry("Raphael", "Star Wars"));
+
+    System.out.println("--> Merging the old way");
+    Map<String, String> everyone = new HashMap<>(family);
+    everyone.putAll(friends);
+    System.out.println(everyone);
+
+    Map<String, String> friends2 = Map.ofEntries(
+            entry("Raphael", "Star Wars"),
+            entry("Cristina", "Matrix"));
+
+    System.out.println("--> Merging maps using merge()");
+    Map<String, String> everyone2 = new HashMap<>(family);
+    friends2.forEach((k, v) -> everyone2.merge(k, v, (movie1, movie2) -> movie1 + " & " + movie2));
+
+    System.out.println(everyone2);
+}
